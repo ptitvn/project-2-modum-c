@@ -5,12 +5,12 @@ void hienThiMenu() {
     printf("\n======================================\n");
     printf("\n         Product Portfolio Management\n        ");
     printf("\n======================================\n");
-    printf("\t1. Show Catalog List\n"); //Hien thi danh s�ch danh muc
+    printf("\t1. Show Catalog List\n"); //Hien thi danh sï¿½ch danh muc
     printf("\t2. Add a new category\n"); //them danh muc moi 
     printf("\t3. Catalog Search\n");//Tim kiem danh muc
     printf("\t4. Save the list to file\n");//Luu danh sach vao tep
     printf("\t5. Edit the list\n");//Chinh sua danh sach
-    printf("\t6. Delete a category\n");//X�a danh muc
+    printf("\t6. Delete a category\n");//Xï¿½a danh muc
     printf("\t7. Arrangement\n"); //sap xep
     printf("\t0. Exits\n");
     printf("\nSelect: ");
@@ -58,7 +58,7 @@ int nhapDanhMuc(DanhMuc *dm, DanhMuc *danhSach, int soLuong) {
         }
     } while (i < soLuong);
 
-    return i == soLuong; // Tra ve 1 neu khong trung, 0 neu tr�ng
+    return i == soLuong; // Tra ve 1 neu khong trung, 0 neu trï¿½ng
 }
 
 void hienThiDanhSach(DanhMuc *danhSach, int soLuong) {
@@ -74,13 +74,13 @@ void hienThiDanhSach(DanhMuc *danhSach, int soLuong) {
 }
 
 int kiemTraDuLieuHopLe(DanhMuc dm) {
-    // Ki?m tra m? danh m?c (v� du: phai l� s? nguy�n d??ng)
+    // Ki?m tra m? danh m?c (vï¿½ du: phai lï¿½ s? nguyï¿½n d??ng)
     if (dm.maDanhMuc <= 0) {
         printf("And the catalog must be a whole number!\n");//Ma danh muc phai la so nguyen duong!
         return 0;
     }
 
-    // Ki?m tra t�n danh m?c (v� d?: kh�ng ��?c �? tr?ng)
+    // Ki?m tra tï¿½n danh m?c (vï¿½ d?: khï¿½ng ï¿½ï¿½?c ï¿½? tr?ng)
     if (strlen(dm.tenDanhMuc) == 0) {
         printf("Category names are not left in the!\n");//Ten danh muc khong duoc de trong
         return 0;
@@ -114,7 +114,7 @@ void themDanhMuc(DanhMuc *danhSach, int *soLuong) {
 
     if (daThem) {
         printf("Add a successful category!\n");
-        // L�u danh s�ch sau khi th�m
+        // Lï¿½u danh sï¿½ch sau khi thï¿½m
         luuDanhSachVaoFileDAT(danhSach, *soLuong);
     }
 }
@@ -142,22 +142,6 @@ void docDanhSachTuFileDAT(DanhMuc *danhSach, int *soLuong) {
 
     *soLuong = fread(danhSach, sizeof(DanhMuc), MAX_DANH_MUC, fp);
     fclose(fp);
-}
-void timDanhMuc(DanhMuc *danhSach, int soLuong) {
-    char ten[50];
-    printf("Enter the name of the category to look for: ");
-    scanf("%s", ten);
-
-    int i;
-    for (i = 0; i < soLuong; i++) {
-        if (strcmp(danhSach[i].tenDanhMuc, ten) == 0) {
-            printf("Find the catalog:\n");
-            printf("Ma: %d\tTen: %s\tGia: %.2f\n", danhSach[i].maDanhMuc, danhSach[i].tenDanhMuc, danhSach[i].giaTien);
-            return;
-        }
-    }
-
-    printf("No catalog found!\n");
 }
 
 
@@ -212,7 +196,7 @@ void xoaDanhMuc(DanhMuc danhSach[], int *soLuong, int maXoa) {
             scanf(" %c", &xacNhan); 
 
             if (xacNhan == 'y' || xacNhan == 'Y') {
-                // Di chuyen c�c phan tu ph�a sau l�n
+                // Di chuyen cï¿½c phan tu phï¿½a sau lï¿½n
                 for (int j = i; j < *soLuong - 1; j++) {
                     danhSach[j] = danhSach[j + 1];
                 }
@@ -226,7 +210,7 @@ void xoaDanhMuc(DanhMuc danhSach[], int *soLuong, int maXoa) {
         }
     }
 
-    // Neu kh�ng tim thay danh muc
+    // Neu khï¿½ng tim thay danh muc
     printf("No catalog found %d.\n", maXoa);
 }
 
@@ -237,21 +221,21 @@ int compareByMaTangDan(const void *a, const void *b) {
     return da->maDanhMuc - db->maDanhMuc;
 }
 
-// H�m so s�nh de sap xep theo ma danh muc giam dan
+// Hï¿½m so sï¿½nh de sap xep theo ma danh muc giam dan
 int compareByMaGiamDan(const void *a, const void *b) {
     DanhMuc *da = (DanhMuc *)a;
     DanhMuc *db = (DanhMuc *)b;
     return db->maDanhMuc - da->maDanhMuc;
 }
 
-// H�m so s�nh de sap xep theo t�n danh muc t�ng dan
+// Hï¿½m so sï¿½nh de sap xep theo tï¿½n danh muc tï¿½ng dan
 int compareByTenTangDan(const void *a, const void *b) {
     DanhMuc *da = (DanhMuc *)a;
     DanhMuc *db = (DanhMuc *)b;
     return strcmp(da->tenDanhMuc, db->tenDanhMuc);
 }
 
-// H�m so s�nh de sap xep theo t�n danh muc giam dan
+// Hï¿½m so sï¿½nh de sap xep theo tï¿½n danh muc giam dan
 int compareByTenGiamDan(const void *a, const void *b) {
     DanhMuc *da = (DanhMuc *)a;
     DanhMuc *db = (DanhMuc *)b;
@@ -263,7 +247,7 @@ int compareByGiaTangDan(const void *a, const void *b) {
     return da->giaTien - db->giaTien;
 }
 
-// H�m so s�nh �? s?p x?p theo gi� gi?m d?n
+// Hàm so sánh ð? s?p x?p theo giá gi?m d?n
 int compareByGiaGiamDan(const void *a, const void *b) {
     DanhMuc *da = (DanhMuc *)a;
     DanhMuc *db = (DanhMuc *)b;
@@ -284,8 +268,8 @@ void sapXepDanhMuc(DanhMuc *danhSach, int soLuong) {
         printf("\t2. Sort by decreasing category code\n");//Sap xep theo ma danh muc giam dan
         printf("\t3. Sort by incremental category name\n");//Sap xep theo ten danh muc tang dan
         printf("\t4. Sort by decreasing category name\n");//Sap xep theo ten danh muc giam dan
-        printf("\t5. Sort by increasing price\n"); // S?p x?p theo gi� t�ng d?n
-        printf("\t6. Sort by decreasing price\n"); // S?p x?p theo gi� gi?m d?n
+        printf("\t5. Sort by increasing price\n"); // S?p x?p theo giá tãng d?n
+        printf("\t6. Sort by decreasing price\n"); // S?p x?p theo giá gi?m d?n
         printf("\t0. Return to main menu\n");//Quay lai menu chinh
         printf("Your Choices: ");//Lua chon cua ban
         scanf("%d", &luaChon);
